@@ -1,7 +1,7 @@
-const listWords = ["Torneira", "Comida", "Tomate", "Estanho", "Biscoito", "Chinchila", "Periquito", "Coruja", "Pescoço", "Boca", "Cadeira", "Recreio", "Jornal", "Revista", "Polícia", "Sapateiro", "Bicicleta", "Foguete"];
+const listWords = ["Torneira", "Comida", "Tomate", "Estanho", "Biscoito", "Chinchila", "Periquito", "Coruja", "Pescoço", "Boca", "Cadeira", "Recreio", "Jornal", "Revista", "Policia", "Sapateiro", "Bicicleta", "Foguete"];
 const divWords = document.getElementById("palavra");
 
-let divStr, array;
+let divStr, array, corpo = 5;
 
 function createDivStrings(){
     divStr = document.createElement("div");
@@ -29,11 +29,30 @@ function caracteres(){
     console.log(sort, listWords[sort]);
 }
 
+function removerCorpo(){
+    if(corpo === 0){
+        document.getElementById(`forca`).removeChild(document.getElementById(`c${corpo}`));
+        corpo--;
+        console.log(`Game Over. Tente novamente!`);
+    }else if(corpo < 0){
+        console.log(`Game Over. Tente novamente!`);
+    }else{
+        document.getElementById(`forca`).removeChild(document.getElementById(`c${corpo}`));
+        corpo--;
+        console.log(corpo);
+    }
+}
+
 function verificandoCaracteres(char){
+    let marcador = array.length-1;
     for(let i=0; i<=array.length-1; i++){
         if(char === array[i]){
             document.getElementById(`d${i}`).innerText = char;
+            marcador--;
         }
+    }
+    if(marcador === array.length-1){
+        removerCorpo();
     }
 }
 
